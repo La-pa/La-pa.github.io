@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-10T02:46:57.429Z</updated>
+  <updated>2023-09-03T14:16:16.549Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>周报</title>
+    <link href="http://example.com/2023/09/03/%E5%91%A8%E6%8A%A5/2023/2023%E5%B9%B49%E6%9C%88/%E5%91%A8%E6%8A%A5#2%20%E6%9D%A5%E5%AD%A6%E6%A0%A1%E4%B8%80%E5%91%A8%E5%90%8E/"/>
+    <id>http://example.com/2023/09/03/%E5%91%A8%E6%8A%A5/2023/2023%E5%B9%B49%E6%9C%88/%E5%91%A8%E6%8A%A5#2%20%E6%9D%A5%E5%AD%A6%E6%A0%A1%E4%B8%80%E5%91%A8%E5%90%8E/</id>
+    <published>2023-09-03T14:16:00.000Z</published>
+    <updated>2023-09-03T14:16:16.549Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;周报-2-已经来学校一周后的生活&quot;&gt;&lt;a href=&quot;#周报-2-已经来学校一周后的生活&quot; class=&quot;headerlink&quot; title=&quot;周报 #2 - 已经来学校一周后的生活&quot;&gt;&lt;/a&gt;周报 #2 - 已经来学校一周后的生活&lt;/h1&gt;&lt;p&gt;本篇是对</summary>
+        
+      
+    
+    
+    
+    <category term="周报" scheme="http://example.com/categories/%E5%91%A8%E6%8A%A5/"/>
+    
+    
+    <category term="2023" scheme="http://example.com/tags/2023/"/>
+    
+    <category term="9月，周报" scheme="http://example.com/tags/9%E6%9C%88%EF%BC%8C%E5%91%A8%E6%8A%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2023-9第一周学习计划</title>
+    <link href="http://example.com/2023/09/03/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023/2023-9/2023-9-1st-WeeklyPlan/"/>
+    <id>http://example.com/2023/09/03/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023/2023-9/2023-9-1st-WeeklyPlan/</id>
+    <published>2023-09-03T13:59:00.000Z</published>
+    <updated>2023-09-03T14:19:31.268Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2023-9第一周学习计划&quot;&gt;&lt;a href=&quot;#2023-9第一周学习计划&quot; class=&quot;headerlink&quot; title=&quot;2023-9第一周学习计划&quot;&gt;&lt;/a&gt;2023-9第一周学习计划&lt;/h1&gt;&lt;p&gt;本文主要规划的是 &lt;code&gt;9-4&lt;/code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="学习计划" scheme="http://example.com/categories/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/"/>
+    
+    
+    <category term="2023" scheme="http://example.com/tags/2023/"/>
+    
+    <category term="9月" scheme="http://example.com/tags/9%E6%9C%88/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -38,11 +92,11 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://example.com/2023/07/15/%E5%91%A8%E6%8A%A5/2023/%E5%91%A8%E6%8A%A5#1%20%E7%AC%AC%E4%B8%80%E7%AF%87%E5%91%A8%E6%8A%A5/"/>
-    <id>http://example.com/2023/07/15/%E5%91%A8%E6%8A%A5/2023/%E5%91%A8%E6%8A%A5#1%20%E7%AC%AC%E4%B8%80%E7%AF%87%E5%91%A8%E6%8A%A5/</id>
-    <published>2023-07-15T07:16:38.359Z</published>
-    <updated>2023-07-16T08:11:54.787Z</updated>
+    <title>周报</title>
+    <link href="http://example.com/2023/07/16/%E5%91%A8%E6%8A%A5/2023/2023%E5%B9%B47%E6%9C%88/%E5%91%A8%E6%8A%A5#1%20%E7%AC%AC%E4%B8%80%E7%AF%87%E5%91%A8%E6%8A%A5/"/>
+    <id>http://example.com/2023/07/16/%E5%91%A8%E6%8A%A5/2023/2023%E5%B9%B47%E6%9C%88/%E5%91%A8%E6%8A%A5#1%20%E7%AC%AC%E4%B8%80%E7%AF%87%E5%91%A8%E6%8A%A5/</id>
+    <published>2023-07-16T14:16:00.000Z</published>
+    <updated>2023-09-03T14:17:06.291Z</updated>
     
     
       
@@ -55,6 +109,12 @@
     
     
     
+    <category term="周报" scheme="http://example.com/categories/%E5%91%A8%E6%8A%A5/"/>
+    
+    
+    <category term="2023" scheme="http://example.com/tags/2023/"/>
+    
+    <category term="7月，周报" scheme="http://example.com/tags/7%E6%9C%88%EF%BC%8C%E5%91%A8%E6%8A%A5/"/>
     
   </entry>
   
@@ -304,8 +364,8 @@
   
   <entry>
     <title>2023-07-MonthPlan</title>
-    <link href="http://example.com/2023/07/01/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023.07.MonthPlan/"/>
-    <id>http://example.com/2023/07/01/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023.07.MonthPlan/</id>
+    <link href="http://example.com/2023/07/01/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/%E8%BF%98%E6%9C%AA%E6%95%B4%E7%90%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023.07.MonthPlan/"/>
+    <id>http://example.com/2023/07/01/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/%E8%BF%98%E6%9C%AA%E6%95%B4%E7%90%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023.07.MonthPlan/</id>
     <published>2023-06-30T18:29:22.000Z</published>
     <updated>2023-06-30T18:33:30.630Z</updated>
     
@@ -335,8 +395,8 @@
   
   <entry>
     <title>2023-07-1st-WeeklyPlan</title>
-    <link href="http://example.com/2023/07/01/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023-07-1st-WeeklyPlan/"/>
-    <id>http://example.com/2023/07/01/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023-07-1st-WeeklyPlan/</id>
+    <link href="http://example.com/2023/07/01/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/%E8%BF%98%E6%9C%AA%E6%95%B4%E7%90%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023-07-1st-WeeklyPlan/"/>
+    <id>http://example.com/2023/07/01/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/%E8%BF%98%E6%9C%AA%E6%95%B4%E7%90%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/2023-07-1st-WeeklyPlan/</id>
     <published>2023-06-30T17:45:22.000Z</published>
     <updated>2023-06-30T18:34:48.112Z</updated>
     
@@ -456,64 +516,6 @@
         
         
     <summary type="html">&lt;h3 id=&quot;导包&quot;&gt;&lt;a href=&quot;#导包&quot; class=&quot;headerlink&quot; title=&quot;导包&quot;&gt;&lt;/a&gt;导包&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    <category term="数学建模" scheme="http://example.com/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
-    
-    
-    <category term="数学建模" scheme="http://example.com/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
-    
-    <category term="机器学习" scheme="http://example.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="数据处理" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>模型建立</title>
-    <link href="http://example.com/2023/03/01/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E6%A8%A1%E5%9E%8B%E5%BB%BA%E7%AB%8B/"/>
-    <id>http://example.com/2023/03/01/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E6%A8%A1%E5%9E%8B%E5%BB%BA%E7%AB%8B/</id>
-    <published>2023-03-01T11:20:00.000Z</published>
-    <updated>2023-06-30T13:08:05.360Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;正规方程&lt;br&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="数学建模" scheme="http://example.com/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
-    
-    
-    <category term="数学建模" scheme="http://example.com/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
-    
-    <category term="机器学习" scheme="http://example.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="数据处理" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分类代码</title>
-    <link href="http://example.com/2023/03/01/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%88%86%E7%B1%BB%E4%BB%A3%E7%A0%81/"/>
-    <id>http://example.com/2023/03/01/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%88%86%E7%B1%BB%E4%BB%A3%E7%A0%81/</id>
-    <published>2023-03-01T11:20:00.000Z</published>
-    <updated>2023-06-30T13:08:05.332Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;KNN算法&quot;&gt;&lt;a href=&quot;#KNN算法&quot; class=&quot;headerlink&quot; title=&quot;KNN算法&quot;&gt;&lt;/a&gt;KNN算法&lt;/h2&gt;&lt;h4 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot;</summary>
         
       
     

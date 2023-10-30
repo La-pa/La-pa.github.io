@@ -96,7 +96,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">5 min</span>
         </span>
     </span>
 </div>
@@ -148,6 +148,12 @@
 <h3 id="CatBoost"><a href="#CatBoost" class="headerlink" title="CatBoost"></a>CatBoost</h3><h4 id="代码-12"><a href="#代码-12" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> catboost <span class="keyword">import</span> CatBoostRegressor</span><br><span class="line"></span><br><span class="line">estimator =  CatBoostRegressor()</span><br><span class="line">estimator.fit(X_train, y_train)  </span><br><span class="line">y_predict = estimator.predict(X_test)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Train set score: &quot;</span>, estimator.score(X_train, y_train))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Test set score: &quot;</span>, estimator.score(X_test, y_test))</span><br></pre></td></tr></table></figure>
 <h2 id="BP神经网络"><a href="#BP神经网络" class="headerlink" title="BP神经网络"></a>BP神经网络</h2><h4 id="代码-13"><a href="#代码-13" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neural_network <span class="keyword">import</span> MLPRegressor</span><br><span class="line"></span><br><span class="line">estimator = MLPRegressor()</span><br><span class="line">estimator.fit(X_train, y_train)  </span><br><span class="line">y_predict = estimator.predict(X_test)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Train set score: &quot;</span>, estimator.score(X_train, y_train))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Test set score: &quot;</span>, estimator.score(X_test, y_test))</span><br></pre></td></tr></table></figure>
 
+<ol>
+<li><p>$27 \leq \sum_{i&#x3D;1}^{n} x_i \leq 33$</p>
+</li>
+<li><p>$x_i \geq 2.5$</p>
+</li>
+</ol>
  
       <!-- reward -->
       

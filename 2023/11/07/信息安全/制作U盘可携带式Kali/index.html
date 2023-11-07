@@ -87,7 +87,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">84</span>
+            <span class="post-count">202</span>
         </span>
     </span>
 
@@ -111,8 +111,18 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="制作U盘可携带式Kali"><a href="#制作U盘可携带式Kali" class="headerlink" title="制作U盘可携带式Kali"></a>制作U盘可携带式Kali</h1><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p><img src="https://s2.loli.net/2023/11/07/faCTRNw8G7iXmlq.png" alt="image-20231107145917896"></p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1]: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129348579">https://zhuanlan.zhihu.com/p/129348579</a>	“将Kali Linux部署在U盘上，并实现U盘启动（汇总纠错）”<br>[2]: <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_59032809/article/details/127189546">https://blog.csdn.net/qq_59032809/article/details/127189546</a>	“如何将kali系统写入U盘，并在U盘中启动”<br>[3]: <a target="_blank" rel="noopener" href="https://blog.csdn.net/BlackBtuWhite/article/details/129645845">https://blog.csdn.net/BlackBtuWhite/article/details/129645845</a>	“制作U盘可携带式KaliLinux”</p>
+  <h1 id="制作U盘可携带式Kali"><a href="#制作U盘可携带式Kali" class="headerlink" title="制作U盘可携带式Kali"></a>制作U盘可携带式Kali</h1><h2 id="1-准备材料"><a href="#1-准备材料" class="headerlink" title="1.准备材料"></a>1.准备材料</h2><h3 id="1-1-硬件"><a href="#1-1-硬件" class="headerlink" title="1.1 硬件"></a>1.1 硬件</h3><p>1.32GB以上，USB 3.0及以上U盘一块；<br>2.电脑一台；</p>
+<h3 id="1-2-软件"><a href="#1-2-软件" class="headerlink" title="1.2 软件"></a>1.2 软件</h3><p>1.<a target="_blank" rel="noopener" href="https://www.balena.io/etcher/">balenaEtcher</a><br>2.<a target="_blank" rel="noopener" href="https://www.disktool.cn/">分区助手</a><br>3.VMWare Workstation（已安装Kali，用于配置持久化分区）<br>4.<a target="_blank" rel="noopener" href="https://www.kali.org/get-kali/#kali-live">Kali USB版镜像</a></p>
+<h2 id="烧录"><a href="#烧录" class="headerlink" title="烧录"></a>烧录</h2><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 -L persistence /dev/sdb5</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /mnt/usb</span><br><span class="line">mount /dev/sdb5 /mnt/usb</span><br><span class="line">echo &quot;/ union&quot; &gt; /mnt/usb/persistence.conf</span><br><span class="line">umount /mnt/usb</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p><img src="https://s2.loli.net/2023/11/07/faCTRNw8G7iXmlq.png" alt="image-20231107145917896"></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1]: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129348579">https://zhuanlan.zhihu.com/p/129348579</a>	“将Kali Linux部署在U盘上，并实现U盘启动（汇总纠错）”<br>[2]: <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_59032809/article/details/127189546">https://blog.csdn.net/qq_59032809/article/details/127189546</a>	“如何将kali系统写入U盘，并在U盘中启动”<br>[3]: <a target="_blank" rel="noopener" href="https://blog.csdn.net/BlackBtuWhite/article/details/129645845">https://blog.csdn.net/BlackBtuWhite/article/details/129645845</a>	“制作U盘可携带式KaliLinux”<br>[4]: <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25426559/article/details/130190594">https://blog.csdn.net/qq_25426559/article/details/130190594</a>	“【KALI】自制U盘版KALI（即插即用具有可持久化功能）”</p>
  
       <!-- reward -->
       
@@ -206,9 +216,9 @@
       </a>
     
     
-      <a href="/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/kali%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+      <a href="/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%9C%A8%E9%A9%AC%E7%97%85%E6%AF%92%E5%88%B6%E4%BD%9C%E7%9A%84%E7%AC%94%E8%AE%B0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">kali的配置</div>
+        <div class="article-nav-title">木马病毒制作的笔记</div>
       </a>
     
   </nav>

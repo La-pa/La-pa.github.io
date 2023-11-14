@@ -1925,6 +1925,9 @@
 <li>在浏览器访问本机的8848端口</li>
 </ol>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2>]]></content>
+      <categories>
+        <category>编程技能</category>
+      </categories>
       <tags>
         <tag>Nacos</tag>
       </tags>
@@ -1937,6 +1940,9 @@
 <h2 id="登入MySQL"><a href="#登入MySQL" class="headerlink" title="登入MySQL"></a>登入MySQL</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line"># 输入密码：</span><br><span class="line">00000000</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>编程技能</category>
+      </categories>
       <tags>
         <tag>Nacos</tag>
       </tags>
@@ -1984,6 +1990,9 @@
 <h3 id="数据卷-1"><a href="#数据卷-1" class="headerlink" title="数据卷"></a>数据卷</h3><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]: <a href="https://www.bilibili.com/video/BV1s54y1n7Ev/?spm_id_from=333.337.search-card.all.click&amp;vd_source=0433279976fad48ef00e33a4e0bdab91">https://www.bilibili.com/video/BV1s54y1n7Ev/?spm_id_from=333.337.search-card.all.click&amp;vd_source=0433279976fad48ef00e33a4e0bdab91</a>	“B站 Docker 10分钟快速入门Docker 10分钟快速入门”<br>[2]: <a href="https://www.bilibili.com/video/BV1LQ4y127n4?p=43&amp;vd_source=0433279976fad48ef00e33a4e0bdab91">https://www.bilibili.com/video/BV1LQ4y127n4?p=43&amp;vd_source=0433279976fad48ef00e33a4e0bdab91</a>	“B站 黑马程序员SpringCloud+RabbitMQ+Docker+Redis+搜索+分布式，系统详解springcloud微服务技术栈课程”</p>
 <p>[3]: <a href="https://zhuanlan.zhihu.com/p/365455200">https://zhuanlan.zhihu.com/p/365455200</a>	“最新、最全、最详细的 Docker 学习笔记总结（2021最新版）”</p>
 ]]></content>
+      <categories>
+        <category>编程技能</category>
+      </categories>
       <tags>
         <tag>Docker</tag>
       </tags>
@@ -7071,7 +7080,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>前端</category>
+        <category>编程技能</category>
       </categories>
       <tags>
         <tag>html</tag>
@@ -7116,7 +7125,7 @@
 <h2 id="真题"><a href="#真题" class="headerlink" title="真题"></a>真题</h2><h3 id="扫雷"><a href="#扫雷" class="headerlink" title="扫雷"></a>扫雷</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LL;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> BASE = <span class="number">1e9</span> + <span class="number">1</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">999997</span>;</span><br><span class="line"></span><br><span class="line">LL hash1[MAX];</span><br><span class="line"><span class="type">int</span> number[MAX], rMax[MAX], visited[MAX];</span><br><span class="line"><span class="type">int</span> result = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将二维数据压缩成一维 </span></span><br><span class="line"><span class="function">LL <span class="title">to_base</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (LL)x * BASE + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 手写哈希表-开放地址法 </span></span><br><span class="line"><span class="function">LL <span class="title">find</span><span class="params">(LL x)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> key = (x % MAX + MAX) % MAX;</span><br><span class="line">	<span class="keyword">while</span> (hash1[key] != <span class="number">-1</span> &amp;&amp; hash1[key] != x) &#123;</span><br><span class="line">		key++;</span><br><span class="line">		<span class="keyword">if</span> (key == MAX) key = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> key;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断点是否在圆内 </span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">judge</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2, <span class="type">int</span> y2, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">pow</span>(x1 - x2, <span class="number">2</span>) + <span class="built_in">pow</span>(y1 - y2, <span class="number">2</span>) &lt;= r * r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 深度搜索 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = x - r; i &lt;= x + r; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = y - r; j &lt;= y + r; j++) &#123;</span><br><span class="line">			LL base = <span class="built_in">to_base</span>(i, j);</span><br><span class="line">			<span class="keyword">if</span> (number[<span class="built_in">find</span>(base)] &amp;&amp; <span class="built_in">judge</span>(x, y, i, j, r) &amp;&amp; !visited[<span class="built_in">find</span>(base)])&#123;</span><br><span class="line">				result += number[<span class="built_in">find</span>(base)];</span><br><span class="line">				visited[<span class="built_in">find</span>(base)] = <span class="number">1</span>;</span><br><span class="line">				<span class="built_in">dfs</span>(i, j, rMax[<span class="built_in">find</span>(base)]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> n, m;</span><br><span class="line">	<span class="built_in">memset</span>(hash1, <span class="number">-1</span>, <span class="built_in">sizeof</span>(hash1));</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="type">int</span> x, y, r;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;x, &amp;y, &amp;r);</span><br><span class="line">		LL base = <span class="built_in">to_base</span>(x, y);</span><br><span class="line">		hash1[<span class="built_in">find</span>(base)] = base;</span><br><span class="line">		number[<span class="built_in">find</span>(base)]++;</span><br><span class="line">		rMax[<span class="built_in">find</span>(base)] = <span class="built_in">max</span>(r, rMax[<span class="built_in">find</span>(base)]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="type">int</span> x, y, r;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;x, &amp;y, &amp;r);</span><br><span class="line">		<span class="built_in">dfs</span>(x, y, r);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, result);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>算法竞赛</category>
+        <category>编程技能</category>
       </categories>
       <tags>
         <tag>蓝桥杯</tag>

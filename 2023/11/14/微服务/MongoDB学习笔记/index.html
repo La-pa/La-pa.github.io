@@ -56,7 +56,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-编程技能/MongoDB学习笔记"
+  id="post-微服务/MongoDB学习笔记"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -75,11 +75,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/11/14/%E7%BC%96%E7%A8%8B%E6%8A%80%E8%83%BD/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+      <a href="/2023/11/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
   <time datetime="2023-11-14T03:30:00.000Z" itemprop="datePublished">2023-11-14</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E8%83%BD/">编程技能</a>
+    <a class="article-category-link" href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
   </div>
   
 <div class="word_count">
@@ -111,16 +111,15 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="MongoDB学习笔记"><a href="#MongoDB学习笔记" class="headerlink" title="MongoDB学习笔记"></a>MongoDB学习笔记</h1><h2 id="软件下载"><a href="#软件下载" class="headerlink" title="软件下载"></a>软件下载</h2><h3 id="在docker中下载Mongodb"><a href="#在docker中下载Mongodb" class="headerlink" title="在docker中下载Mongodb"></a>在docker中下载Mongodb</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mongo:4.4</span><br></pre></td></tr></table></figure>
+  <h1 id="MongoDB学习笔记"><a href="#MongoDB学习笔记" class="headerlink" title="MongoDB学习笔记"></a>MongoDB学习笔记</h1><h2 id="软件下载"><a href="#软件下载" class="headerlink" title="软件下载"></a>软件下载</h2><h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&quot;3.9&quot;</span></span><br><span class="line">services:</span><br><span class="line">  mongodb:</span><br><span class="line">    image: mongo:<span class="number">4.4</span></span><br><span class="line">    container_name: mongodb</span><br><span class="line">    environment:</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">      - MONGO_INITDB_DATABASE=mongodb  </span><br><span class="line">      - MONGO_INITDB_ROOT_USERNAME=root</span><br><span class="line">      - MONGO_INITDB_ROOT_PASSWORD=<span class="number">123456</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;27017:27017&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./data:/data/db</span><br><span class="line">      - ./logs:/data/logs</span><br><span class="line">      - ./config:/data/configdb</span><br><span class="line">      - ./conf/mongod.conf:/etc/mongo/mongod.conf</span><br><span class="line">    command: mongod --config /etc/mongo/mongod.conf</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&quot;3.9&quot;</span></span><br><span class="line">services:</span><br><span class="line">  mongodb:</span><br><span class="line">    image: mongo:<span class="number">4.4</span></span><br><span class="line">    container_name: mongodb</span><br><span class="line">    environment:</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">      - MONGO_INITDB_DATABASE=mongdb</span><br><span class="line">      - MONGO_INITDB_ROOT_USERNAME=root</span><br><span class="line">      - MONGO_INITDB_ROOT_PASSWORD=<span class="number">123456</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;27017:27017&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - D:\Data\Document\DataSource\MongDB\data:/data/db</span><br><span class="line">      - D:\Data\Document\DataSource\MongDB\log:/data/logs</span><br><span class="line">      - D:\Data\Document\DataSource\MongDB\config:/data/configdb</span><br><span class="line">    command: mongod --config /data/configdb/mongod.conf</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="MongoDB配置文件mongod-conf"><a href="#MongoDB配置文件mongod-conf" class="headerlink" title="MongoDB配置文件mongod.conf"></a>MongoDB配置文件mongod.conf</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: /data/logs/mongod.log</span><br><span class="line">  logAppend: true</span><br><span class="line">storage:</span><br><span class="line">  dbPath: /data/db</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  wiredTiger:</span><br><span class="line">    engineConfig:</span><br><span class="line">      cacheSizeGB: 1</span><br><span class="line">  engine: wiredTiger</span><br><span class="line">  directoryPerDB: true</span><br><span class="line">net:</span><br><span class="line">  bindIpAll: true</span><br><span class="line">  port: 27017</span><br><span class="line">  maxIncomingConnections: 10000</span><br><span class="line">security:</span><br><span class="line">  authorization: enabled</span><br></pre></td></tr></table></figure>
 
-
-
-<h4 id="MongoDB配置文件mongod-conf"><a href="#MongoDB配置文件mongod-conf" class="headerlink" title="MongoDB配置文件mongod.conf"></a>MongoDB配置文件mongod.conf</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: /var/log/mongodb/mongod.log</span><br><span class="line">  logAppend: true</span><br><span class="line">storage:</span><br><span class="line">  dbPath: /data/db</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  wiredTiger:</span><br><span class="line">    engineConfig:</span><br><span class="line">      cacheSizeGB: 1</span><br><span class="line">  engine: wiredTiger</span><br><span class="line">  directoryPerDB: true</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  mmapv1:</span><br><span class="line">    smallFiles: true</span><br><span class="line">    journal:</span><br><span class="line">      enabled: true</span><br><span class="line">net:</span><br><span class="line">  bindIpAll: true</span><br><span class="line">  port: 27017</span><br><span class="line">  protocol: tcp</span><br><span class="line">  maxIncomingConnections: 10000</span><br><span class="line">security:</span><br><span class="line">  authorization: enabled</span><br></pre></td></tr></table></figure>
-
+<blockquote>
+<p>配置文件放在，<code>docker-compose.yml</code>当前文件夹的下面的<code>conf</code>文件夹</p>
+</blockquote>
 <h2 id="MongoDB的CRUD"><a href="#MongoDB的CRUD" class="headerlink" title="MongoDB的CRUD"></a>MongoDB的CRUD</h2><h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><table>
 <thead>
 <tr>
@@ -391,7 +390,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/11/14/%E7%BC%96%E7%A8%8B%E6%8A%80%E8%83%BD/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/11/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -403,6 +402,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2023/11/15/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Redis学习笔记语法
+          
+        </div>
+      </a>
     
     
       <a href="/2023/11/07/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/SQL%E6%B3%A8%E5%85%A5/" class="article-nav-link">

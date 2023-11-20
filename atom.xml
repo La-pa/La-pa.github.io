@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-11-19T15:57:22.503Z</updated>
+  <updated>2023-11-20T02:54:14.483Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2023/11/19/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/Untitled/"/>
     <id>http://example.com/2023/11/19/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/Untitled/</id>
     <published>2023-11-19T15:30:00.000Z</published>
-    <updated>2023-11-19T15:57:22.503Z</updated>
+    <updated>2023-11-20T02:54:14.483Z</updated>
     
     
       
@@ -29,7 +29,8 @@
         
         
     <summary type="html">&lt;h1 id=&quot;冥想笔记&quot;&gt;&lt;a href=&quot;#冥想笔记&quot; class=&quot;headerlink&quot; title=&quot;冥想笔记&quot;&gt;&lt;/a&gt;冥想笔记&lt;/h1&gt;&lt;p&gt;【自习】A-身体静止，主动到被动_哔哩哔哩_bilibili&lt;/p&gt;
-&lt;p&gt;&lt;audio</summary>
+&lt;audio controls&gt;
+  &lt;source</summary>
         
       
     
